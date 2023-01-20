@@ -51,7 +51,6 @@ resource "libvirt_cloudinit_disk" "cloud_init" {
   user_data      = templatefile("${path.module}/cloud_init_user_data.tftpl", {
     hostname = var.hostname
     root_password = var.root_password
-#    authorized_keys = var.authorized_keys_file != null ? try(split("\n",file(var.authorized_keys_file)), null) : null
     authorized_keys = try(split("\n",file(var.authorized_keys_file)), null)
   })
   network_config = templatefile("${path.module}/cloud_init_network_config.tftpl", {
