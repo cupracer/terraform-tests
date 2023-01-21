@@ -1,3 +1,8 @@
+variable "base_image" {
+  type     = string
+  nullable = false
+}
+
 variable "hostname" {
   type     = string
   nullable = false

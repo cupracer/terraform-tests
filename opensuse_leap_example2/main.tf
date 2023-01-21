@@ -26,7 +26,7 @@ locals {
 resource "libvirt_volume" "base_image" {
   name   = "${var.hostname}_base.qcow2"
   pool   = "default"
-  source = "https://download.opensuse.org/distribution/leap/15.4/appliances/openSUSE-Leap-15.4-JeOS.x86_64-OpenStack-Cloud.qcow2"
+  source = var.base_image
   format = "qcow2"
 }
 
