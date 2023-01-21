@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+timezone:
+  timezone: 'Etc/UTC'
+  use_utc: True
+

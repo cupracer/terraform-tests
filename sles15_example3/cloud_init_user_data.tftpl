@@ -1,0 +1,29 @@
+#cloud-config
+# vim: syntax=yaml
+
+users:
+  - name: root
+%{ if authorized_keys != null ~}
+    ssh_authorized_keys:
+%{ for key in authorized_keys  ~}
+      - ${key}
+%{ endfor ~}
+%{ endif ~}
+
+chpasswd:
+  list: |
+     root:${root_password}
+  expire: false
+disable_root: false
+
+growpart:
+  mode: auto
+  devices: ['/']
+
+hostname: ${hostname}
+
+runcmd:
+  - systemctl restart network
+  - sed -i '/^GRUB_CMDLINE_LINUX_DEFAULT/ s/console=tty0/serial/' /etc/default/grub
+  - grub2-mkconfig -o /boot/grub2/grub.cfg
+
